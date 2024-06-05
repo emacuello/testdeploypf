@@ -17,12 +17,15 @@ export class UsersService {
 
   async findAll() {
     const users = await this.userRepository.find();
-    if (!users) throw new NotFoundException('No se encontraron usuarios');
+    console.log(users);
+
+    if (users.length === 0 || !users)
+      throw new NotFoundException('No se encontraron usuarios');
     return users;
   }
 
-  findOne(id: string) {
-    const user = this.userRepository.findOne({
+  async findOne(id: string) {
+    const user = await this.userRepository.findOne({
       where: { id },
       relations: [
         'car',
@@ -34,30 +37,38 @@ export class UsersService {
       ],
     });
     if (!user) throw new NotFoundException('Usuario no encontrado');
-    return user;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...rest } = user;
+    return rest;
   }
 
   async getUserByToken(token: string) {
     const currentUser = token?.split(' ')[1];
     if (!currentUser)
       throw new NotFoundException('No hay un usuario autenticado');
-    const payload: JwtPayload = this.jwtService.verify(currentUser, {
-      secret: process.env.JWT_SECRET_KEY,
+    const payload: JwtPayload = await this.jwtService.verify(currentUser, {
+      secret: process.env.JWT_SECRET,
     });
+
     if (!payload) throw new NotFoundException('Error al decodificar token');
-    const user = this.userRepository.findOne({
-      where: { id: payload.sub },
+    const user = await this.userRepository.findOne({
+      where: { email: payload.sub },
       relations: [
         'car',
         'post',
+        'post.car',
         'rentals',
+        'rentals.posts.car',
         'notifications',
         'addresses',
         'reviews',
       ],
     });
     if (!user) throw new NotFoundException('Usuario no encontrado');
-    return user;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...rest } = user;
+
+    return rest;
   }
 
   async update(
