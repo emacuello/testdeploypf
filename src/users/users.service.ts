@@ -21,7 +21,8 @@ export class UsersService {
 
     if (users.length === 0 || !users)
       throw new NotFoundException('No se encontraron usuarios');
-    return users;
+    const {password, ...rest} = users
+    return rest;
   }
 
   async findOne(id: string) {
