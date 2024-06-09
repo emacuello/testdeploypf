@@ -7,7 +7,7 @@ import './notifications/CronJobs.service';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
-  const PORT = Number(process.env.PORT_HTTP) || 3001;
+  const PORT = process.env.PORT_HTTP || 3001;
   const app = await NestFactory.create(AppModule);
 
   const options = new DocumentBuilder()

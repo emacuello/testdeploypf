@@ -1,166 +1,77 @@
-## Carrera: Full Stack
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+</p>
 
-# Alquiler de Autos: YouDrive
+[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
+[circleci-url]: https://circleci.com/gh/nestjs/nest
 
-## Integrantes del equipo:
+  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+    <p align="center">
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
+<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
+<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
+<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
+<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
+<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
+  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
+    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
+  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
+</p>
+  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
+  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-- Geronimo Kramar - Front End: 'GeroKramar'
-- Camila Fabre - Front End: 'cfcamilafabre'
-- Camilo Sierra - Front End: 'CAndresSierra'
-- Victor Emanuel Elias Cuello - Back End: 'emacuello'
-- Juan Carlos Alvarez Martinez - Back End: 'AlvarezMar'
-- Darvin Ricardo Alania Inoecencio - Back End: 'DAlaniaInocecio'
-- Danilo Maccari - Back End: 'maccari78'
+## Description
 
-## Caso de negocio
+[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-El proyecto se enfoca en el sector de alquiler de rodados, un área que actualmente enfrenta desafíos como la falta de transparencia y eficiencia en la gestión de alquileres. Estamos desarrollando esta aplicación para abordar la necesidad de una plataforma integral que facilite la conexión entre propietarios y arrendatarios de manera segura y eficiente. El sitio web ofrecerá soluciones como la gestión de pagos automatizados, y un sistema de calificaciones y reseñas para ambas partes.
+## Installation
 
-## Funcionalidades
+```bash
+$ npm install
+```
 
-- Requisitos tech ¿Cómo lo aplicarán? (Idea boceto)
-- Autenticación propia y externa. Persistencia de sesión: Auth0
-- Notificaciones vía mail: NodeMailer
-- Almacenamiento de archivos: Cloudinary
-- Información de la aplicación: PostgreSQL conectado con TypeORM
-- Usuario administrador con su respectivo dashboard
-- Autentificación en el front donde dependiendo el usuario se muestran los datos del dashboard.
-- Documentación: Figma donde se haga un modelo de las vistas y Open API Swagger para el backend
-- Pagos: Mercadopago o Paypal
-- Despliegue de la totalidad de proyecto: Vercel (Frontend) y Railway o Render (Backend).
-- ChatBot. No necesariamente con IA pero si se puede, mejor. Que al menos pueda tomar datos y responder preguntas básicas a seleccionar.
-- Chat usuario/usuario o usuario/admin. Usando websockets y Socket.IO
+## Running the app
 
-## Sistema de notificación automática de manera periódica (uso de crons).
+```bash
+# development
+$ npm run start
 
-Ejemplos/propuestas:
+# watch mode
+$ npm run start:dev
 
-- Newsletter diario
-- Implementación de promociones
+# production mode
+$ npm run start:prod
+```
 
-## Implementación de herramientas Google Cloud.
+## Test
 
-Ejemplos/propuestas:
-Google Maps
-Detección de contenido inadecuado en textos y/o imágenes
-Speech-to-Text / Text-to-Speech
-Implementar Google Maps para la localización de los productos alquilados
+```bash
+# unit tests
+$ npm run test
 
-## Investigar y aplicar una nueva tecnología.
+# e2e tests
+$ npm run test:e2e
 
-Propuestas:
+# test coverage
+$ npm run test:cov
+```
 
-- GraphQL
-- Prisma
-  Otros FW de Frontend como Vue o Angular
-- React Native
+## Documentation Swagger
+http://localhost:3001/api#/
 
-## Historias de usuario
 
-- Como Invitado quiero poder ingresar a una publicación para ver sus detalles.
-- Como Invitado quiero poder registrarme para tener acceso a la plataforma y sus servicios.
-- Como Usuario quiero poder iniciar sesión para acceder a mis datos personales y acceder a funcionalidades exclusivas.
-- Como Usuario quiero poder cerrar sesión para proteger mi cuenta y mis datos personales cuando termine de usar la aplicación.
-- Como Usuario logueado quiero poder publicar un auto para poder alquilarlo.
-- Como Usuario logueado quiero poder ver publicaciones para alquilar autos registrados dentro de la plataforma.
-- Como Usuario logueado puedo comentar y dar reseñas a publicaciones para expresar mi opinión y compartir mi experiencia.
-- Como Usuario logueado quiero dejar comentarios en las publicaciones para calificar al propietario del auto.
-- Como Usuario logueado quiero poder reservar un auto para tener un vehículo siempre disponible si lo necesito.
-- Como Usuario logueado quiero poder cancelar una reserva para ajustar mis planes en caso de un imprevisto.
-- Como Usuario logueado quiero poder modificar mis datos de usuario para mantener actualizado el perfil.
-- Como Usuario logueado quiero poder visualizar mi historial de alquileres en mi dashboard/perfil para revisar transacciones pasadas.
-- Como Administrador quiero poder modificar los productos de ser necesario para mantener información actualizada.
-- Como Administrador quiero poder eliminar publicaciones de ser necesario para asegurar que mi plataforma cuente con los mejores productos.
-- Como Administrador quiero poder visualizar la información de todos los usuarios para supervisar la actividad de la plataforma.
-- Como Administrador quiero poder cambiar roles de únicamente usuarios para asignar permisos necesarios según sea el caso.
-- Como SuperAdministrador quiero poder cambiar roles para asignar permisos tanto de usuarios como de administradores.
-- Como SuperAdministrador quiero poder eliminar roles para mantener la seguridad del sitio.
+## Support
 
-## Documentación del proyecto: OPCIONAL
+Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
-Únicamente si han cumplido con las secciones obligatorias al pie de la letra los invitamos a incluir al menos una versión inicial de:
+## Stay in touch
 
-- Wireframe en Figma (Iniciado o avanzado)
-- Diagrama de arquitectura (General, incluyendo módulos de backend)
-- DER (Entidades presentes en la aplicación)
+- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
+- Website - [https://nestjs.com](https://nestjs.com/)
+- Twitter - [@nestframework](https://twitter.com/nestframework)
 
-Incluir los links con acceso público en todos los casos que consideres necesarios.
+## License
 
----
-
-# Configuración Inicial del Proyecto
-
-## Cada miembro del equipo debe clonar el repositorio en su máquina local usando el comando:
-
-- git clone https://github.com/maccari78/pf-rym-you-drive
-
-## Configurar las ramas principales:
-
-Decide las ramas principales (por ejemplo, main y develop).
-El creador del repositorio debería crear estas ramas si aún no existen:
-
-- git checkout -b develop
-- git push origin develop
-
-## Flujo de Trabajo con GitHub
-
-Feature branches (ramas de características):
-
-## Para cada nueva característica o corrección de errores, los desarrolladores deben crear una nueva rama a partir de develop:
-
-- git checkout -b feature/nombre-de-la-caracteristica
-
-## Realizar cambios y commits:
-
-Haz los cambios necesarios en tu rama y realiza commits frecuentemente con mensajes descriptivos:
-
-- git add .
-- git commit -m "Descripción clara de los cambios"
-
-## Pushear la rama al repositorio remoto:
-
-## Sube tus cambios a tu rama en GitHub:
-
-- git push origin feature/nombre-de-la-caracteristica
-- Pull Request (PR):
-
-## Una vez que una característica esté lista, abre un Pull Request en GitHub desde tu rama hacia develop.
-
-- Describa los cambios en el PR y solicita revisiones de tus compañeros de equipo.
-- Revisión y aprobación del código:
-
-## Los compañeros de equipo revisarán el PR, dejarán comentarios y solicitarán cambios si es necesario.
-
-- Una vez aprobados, se puede fusionar (merge) el PR en develop.-
-
-# Integración Continua y Despliegue
-
-- Configurar CI/CD:
-- Utiliza herramientas como GitHub Actions para configurar la integración continua.
-- Configura un flujo de trabajo que ejecute pruebas y despliegue automáticamente si es necesario.
-
-## Resolución de Conflictos
-
-Mantén tu rama actualizada:
-
-## Antes de abrir un PR, asegúrate de que tu rama esté actualizada con develop:
-
-- git fetch origin
-- git checkout develop
-- git pull origin develop
-- git checkout feature/nombre-de-la-caracteristica
-- git merge develop
-
-## Resolución de conflictos:
-
-Si hay conflictos durante el merge, resuélvelos en tu máquina local y realiza un nuevo commit con los cambios resueltos.
-
-# Buenas Prácticas
-
-- Realiza commits frecuentemente con cambios pequeños y bien descritos.
-- Código limpio y documentado:
-  Asegúrate de que tu código sea limpio y esté bien documentado.
-
-## Revisar y testear:
-
-- Siempre revisa y prueba tu código antes de abrir un PR.
+Nest is [MIT licensed](LICENSE).
