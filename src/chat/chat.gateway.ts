@@ -11,9 +11,9 @@ import { ChatService } from './chat.service';
 import { CreateChatDto } from './dto/create-chat.dto';
 
 import { Server, Socket } from 'socket.io';
-import { ChatClient, MessageChat } from './interfaces/usersChat.interfaces';
-const PORT = Number(process.env.PORT_WS) || 80;
+import { MessageChat } from './interfaces/usersChat.interfaces';
 
+const PORT = Number(process.env.PORT_WS) || 80;
 @WebSocketGateway(PORT, {
   namespace: 'chat',
   cors: '*',

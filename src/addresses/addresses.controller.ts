@@ -11,7 +11,9 @@ import {
 import { AddressesService } from './addresses.service';
 import { CreateAddressDto } from './dto/create-address.dto';
 import { UpdateAddressDto } from './dto/update-address.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('ADDRESSES')
 @Controller('addresses')
 export class AddressesController {
   constructor(private readonly addressesService: AddressesService) {}
@@ -29,24 +31,28 @@ export class AddressesController {
     return this.addressesService.getAddressById(id);
   }
 
-  @Post(':id')
-  async newAddress(
-    @Body() createAddressDto: CreateAddressDto,
-    @Param('id') id: string,
-  ) {
-    return this.addressesService.newAddress(id, createAddressDto);
-  }
-
   @Put(':id')
   updateAddress(
-    @Param('id') id: string,
+    @Param('id') addressId: string,
     @Body() updateAddressDto: UpdateAddressDto,
   ) {
-    return this.addressesService.updateAddress(id, updateAddressDto);
+    return this.addressesService.updateAddress(addressId, updateAddressDto);
   }
 
   @Delete(':id')
   deleteAddress(@Param('id') id: string) {
     return this.addressesService.deleteAddress(id);
+  }
+
+  @Post(':id')
+  async addressWithGeolocation(
+    @Param('id') userId: string,
+    @Body()
+    createAddressDto: CreateAddressDto,
+  ) {
+    return this.addressesService.addressWithGeolocation(
+      userId,
+      createAddressDto,
+    );
   }
 }

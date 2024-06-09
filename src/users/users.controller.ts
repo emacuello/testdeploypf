@@ -7,16 +7,18 @@ import {
   Put,
   ParseUUIDPipe,
   UseInterceptors,
-  UploadedFiles,
   ParseFilePipe,
   MaxFileSizeValidator,
   FileTypeValidator,
   Headers,
+  UploadedFile,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { FilesInterceptor } from '@nestjs/platform-express';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('USERS')
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
@@ -26,6 +28,7 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
+  @ApiBearerAuth()
   @Get('token')
   getUserByToken(@Headers('Authorization') token: string) {
     return this.usersService.getUserByToken(token);
@@ -36,12 +39,13 @@ export class UsersController {
     return this.usersService.findOne(id);
   }
 
-  @Put(':id')
-  @UseInterceptors(FilesInterceptor('file', 1))
+  @ApiBearerAuth()
+  @Put('update')
+  @UseInterceptors(FileInterceptor('file'))
   update(
-    @Param('id') id: string,
     @Body() updateUserDto: UpdateUserDto,
-    @UploadedFiles(
+    @Headers('Authorization') token: string,
+    @UploadedFile(
       new ParseFilePipe({
         validators: [
           new MaxFileSizeValidator({
@@ -52,12 +56,34 @@ export class UsersController {
             fileType: /(jpg|jpeg|png|webp)$/,
           }),
         ],
+        fileIsRequired: false,
       }),
     )
     file?: Express.Multer.File,
   ) {
-    if (!file) return this.usersService.update(id, updateUserDto);
-    return this.usersService.update(id, updateUserDto, file);
+    console.log(updateUserDto);
+    const { city, address, country, state, zip_code, ...rest2 } = updateUserDto;
+
+    if (!file)
+      return this.usersService.update(token, rest2, {
+        city,
+        address,
+        country,
+        state,
+        zip_code,
+      });
+    return this.usersService.update(
+      token,
+      rest2,
+      {
+        city,
+        address,
+        country,
+        state,
+        zip_code,
+      },
+      file,
+    );
   }
 
   @Delete(':id')

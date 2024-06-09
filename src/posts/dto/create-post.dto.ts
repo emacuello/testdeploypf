@@ -1,12 +1,5 @@
 import { Transform } from 'class-transformer';
-import {
-  IsArray,
-  IsNotEmpty,
-  IsNumber,
-  IsOptional,
-  IsString,
-  Length,
-} from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString, Length } from 'class-validator';
 
 export class CreatePostDto {
   //characteristics of the Posts
@@ -17,7 +10,16 @@ export class CreatePostDto {
   description: string;
 
   @IsNumber()
-  @Transform(({ value }) => parseInt(value))
+  @Transform(({ value }) => {
+    if (typeof value === 'number') {
+      return value;
+    }
+    const transformedValue = Number(value);
+    if (isNaN(transformedValue)) {
+      throw new Error('El valor no es numero');
+    }
+    return transformedValue;
+  })
   price: number;
 
   //characteristics of the car
@@ -33,7 +35,16 @@ export class CreatePostDto {
 
   @IsNumber()
   @IsNotEmpty()
-  @Transform(({ value }) => parseInt(value))
+  @Transform(({ value }) => {
+    if (typeof value === 'number') {
+      return value;
+    }
+    const transformedValue = Number(value);
+    if (isNaN(transformedValue)) {
+      throw new Error('El valor no es numero');
+    }
+    return transformedValue;
+  })
   year: number;
 
   @IsString()

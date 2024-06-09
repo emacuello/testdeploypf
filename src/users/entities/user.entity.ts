@@ -13,6 +13,8 @@ import {
   OneToMany,
   JoinColumn,
   ManyToMany,
+  // OneToOne,
+  // ManyToOne,
 } from 'typeorm';
 
 @Entity('users')
@@ -55,13 +57,15 @@ export class User {
   @Column({ type: 'text', nullable: true })
   aboutMe: string;
 
-  @Column({ type: 'varchar', default: 'user' })
+  @Column({ default: 'user' })
   roles: string;
 
   @ManyToMany(() => Rental, (rental) => rental.users)
   rentals: Rental[];
 
-  @OneToMany(() => Notification, (notification) => notification.user)
+  @OneToMany(() => Notification, (notification) => notification.user, {
+    cascade: true,
+  })
   @JoinColumn()
   notifications: Notification[];
 

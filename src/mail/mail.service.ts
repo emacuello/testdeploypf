@@ -8,7 +8,7 @@ export class MailService {
     if (template === 'welcome') {
       try {
         await this.mailerservice.sendMail({
-          to: 'youdrive.notifications@getMaxListeners.com',
+          to: 'youdrive.notifications@gmail.com',
           subject: 'You Drive. Alquila Autos Facilmente',
           template: 'welcome',
           context: {
@@ -32,7 +32,7 @@ export class MailService {
     } else if (template === 'offer') {
       try {
         await this.mailerservice.sendMail({
-          to: 'youdrive.notifications@getMaxListeners.com',
+          to: 'youdrive.notifications@gmail.com',
           subject: 'You Drive. Alquila Autos Facilmente',
           template: 'offer',
           context: {
@@ -54,19 +54,16 @@ export class MailService {
         );
       }
     } else {
-      let posts;
-      let rentals;
-
-      user.post[0]
-        ? (posts = user.post)
-        : (posts = 'Aún no has publicado nada');
-      user.rentals[0]
-        ? (rentals = user.rentals)
-        : (rentals = 'Aún no has alquilado nada');
+      const posts = user.post?.length
+        ? user.post
+        : ['Aún no has publicado nada'];
+      const rentals = user.rentals?.length
+        ? user.rentals
+        : ['Aún no has alquilado nada'];
 
       try {
         await this.mailerservice.sendMail({
-          to: 'youdrive.notifications@getMaxListeners.com',
+          to: 'youdrive.notifications@gmail.com',
           subject: 'You Drive. Alquila Autos Facilmente',
           template: 'weekly',
           context: {
@@ -79,6 +76,11 @@ export class MailService {
               filename: 'logo.png',
               path: __dirname + '../../../../frontend/public/logo.png',
               cid: 'imagename',
+            },
+            {
+              filename: 'offer.png',
+              path: __dirname + '../../../../frontend/public/bestpriceform.png',
+              cid: 'weeklyoffer',
             },
           ],
         });
